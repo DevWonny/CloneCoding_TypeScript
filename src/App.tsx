@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
-import Header from "./components/Header";
+import Main from "./views/Main";
 
 function App() {
-  return <Header />;
+  return <Main />;
 }
 
 export default App;
