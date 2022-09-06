@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import BannerImg from "../assets/MainBanner.svg";
+import BannerImg from '../assets/MainBanner.svg';
 
 const MainBanner = () => {
   return (
