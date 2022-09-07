@@ -3,6 +3,7 @@ import React from 'react';
 import Header from '../components/Header';
 import MainBanner from './MainBanner';
 import Brand from './Brand';
+import Menu from './Menu';
 
 const Main = () => {
   return (
@@ -10,6 +11,7 @@ const Main = () => {
       <Header />
       <MainBanner />
       <Brand />
+      <Menu />
     </>
   );
 };
