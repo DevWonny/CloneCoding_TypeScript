@@ -6,6 +6,7 @@ import Brand from './Brand';
 import Menu from './Menu';
 import Address from './Address';
 import Inquiry from './Inquiry';
+import Footer from '../components/Footer';
 
 const Main = () => {
   return (
@@ -16,6 +17,7 @@ const Main = () => {
       <Menu />
       <Address />
       <Inquiry />
+      <Footer />
     </>
   );
 };
