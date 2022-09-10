@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import MainBanner from './MainBanner';
 import Brand from './Brand';
 import Menu from './Menu';
+import Address from './Address';
 
 const Main = () => {
   return (
@@ -12,6 +13,7 @@ const Main = () => {
       <MainBanner />
       <Brand />
       <Menu />
+      <Address />
     </>
   );
 };
