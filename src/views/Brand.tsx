@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import BrandImage from '../assets/BrandImage.svg';
 
 const Brand = () => {
+  // 해당 페이지 영역으로 이동될 경우 화면에 출력되는 컨텐츠들 모두 애니메이션 효과 필요. 해당 부분은 원래 페이지 참고하기.
+  // 꼭 동일할 필요 없음
   return (
     <BrandWrap>
       <BrandContainer>

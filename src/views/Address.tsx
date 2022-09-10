@@ -5,7 +5,7 @@ import BackImage from '../assets/Map_background.jpg';
 
 const Address = () => {
   return (
-    <AddressContainer>
+    <AddressWarp>
       <AddressBackground />
       <Title>ADDRESS</Title>
       <SubTitle>매장 위치 및 전화번호</SubTitle>
@@ -15,13 +15,13 @@ const Address = () => {
         <AddressPostcodeContainer>Daum PostCode</AddressPostcodeContainer>
         <AddressMapContainer>Kakao Map</AddressMapContainer>
       </AddressMapWrap>
-    </AddressContainer>
+    </AddressWarp>
   );
 };
 
 export default Address;
 
-const AddressContainer = styled.div`
+const AddressWarp = styled.div`
   width: 100%;
   height: 100vh;
   position: relative;

@@ -6,15 +6,15 @@ import BannerImg from '../assets/MainBanner.svg';
 
 const MainBanner = () => {
   return (
-    <MainBannerContainer>
+    <MainBannerWarp>
       <img src={BannerImg} alt="MainBannerImage" />
-    </MainBannerContainer>
+    </MainBannerWarp>
   );
 };
 
 export default MainBanner;
 
-const MainBannerContainer = styled.div`
+const MainBannerWarp = styled.div`
   width: 100%;
   height: 672px;
 

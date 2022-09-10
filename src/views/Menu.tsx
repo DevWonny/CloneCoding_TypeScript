@@ -19,6 +19,7 @@ const Menu = () => {
         <span>피자선생의 도우가 맛있는 피자</span>
       </MenuHeaderContainer>
 
+      {/* 피자 이미지에 mouse over 시 효과 추가 되어야 함. 해당 효과는 원래 페이지에서 참고 */}
       <MenuContentsWrap>
         <MenuContentsContainer>
           <MenuContentsDiv>
