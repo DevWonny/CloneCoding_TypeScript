@@ -5,6 +5,7 @@ import MainBanner from './MainBanner';
 import Brand from './Brand';
 import Menu from './Menu';
 import Address from './Address';
+import Inquiry from './Inquiry';
 
 const Main = () => {
   return (
@@ -14,6 +15,7 @@ const Main = () => {
       <Brand />
       <Menu />
       <Address />
+      <Inquiry />
     </>
   );
 };
