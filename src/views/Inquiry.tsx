@@ -117,7 +117,20 @@ const Inquiry = () => {
       </InquiryContainer>
 
       {/* 회사 위치 및 연락처 영역 */}
-      <CompanyContainer></CompanyContainer>
+      <CompanyContainer>
+        <CompanyTextContainer>
+          <CompanyTitle>Company</CompanyTitle>
+          <CompanyAddressTextContainer>
+            <h5>위치안내</h5>
+            <p>서울특별시 구로구 공원로 47 (구로동, 도림두산베어스타워) 608호</p>
+            <p>(608ho, 47, Gonwon-ro, Guro-gu, Seoul, Republic of Korea 680)</p>
+          </CompanyAddressTextContainer>
+
+          <Consulting>
+            <span>가맹상담&nbsp;&nbsp;&nbsp;&nbsp;</span>010-5454-7896
+          </Consulting>
+        </CompanyTextContainer>
+      </CompanyContainer>
     </InquiryWrap>
   );
 };
@@ -141,7 +154,7 @@ const InquiryContainer = styled.div`
 const InquiryTitle = styled.h1`
   font-size: 36px;
   font-weight: bold;
-  margin: 0 0 30px 0;
+  margin: 50px 0;
 `;
 
 const InquiryInputWrap = styled.div`
@@ -271,4 +284,72 @@ const CompanyContainer = styled.div`
   position: relative;
   background-image: url(${InquiryImage});
   background-size: cover;
+`;
+
+const CompanyTextContainer = styled.div`
+  width: 425px;
+  height: 380px;
+  position: relative;
+  top: 104px;
+  left: 67px;
+`;
+
+const CompanyTitle = styled.h1`
+  font-size: 72px;
+  font-weight: bold;
+  margin: 0 0 80px 0;
+`;
+
+const CompanyAddressTextContainer = styled.div`
+  width: 100%;
+  height: 70px;
+  position: relative;
+
+  &::before {
+    content: '';
+    width: 100px;
+    height: 2px;
+    position: absolute;
+    top: -50px;
+    left: 0;
+    background: #000;
+  }
+
+  & h5 {
+    font-size: 14px;
+    font-size: 700;
+    margin: 0 0 10px 0;
+  }
+
+  & p {
+    font-size: 14px;
+    margin: 0 0 10px 0;
+  }
+`;
+
+const Consulting = styled.div`
+  width: 100%;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  font-size: 22px;
+  border: 2px solid #000;
+  border-radius: 50px;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin: 30px 0;
+
+  & span {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 25px;
+      right: 8px;
+      top: 0;
+      background: #000;
+    }
+  }
 `;
