@@ -7,7 +7,6 @@ import Logo from '../assets/Logo.svg';
 const Header = () => {
   // 해당 탭 클릭 시 위치 이동
   const brandClick = () => {
-    console.log(document.querySelector('.Brand')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
     document.querySelector('.Brand')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
@@ -22,6 +21,7 @@ const Header = () => {
   const InquiryClick = () => {
     document.querySelector('.Inquiry')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
+
   return (
     <HeaderWrap>
       <HeaderContainer>
