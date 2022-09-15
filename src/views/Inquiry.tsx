@@ -184,6 +184,7 @@ const ContentsWrap = styled.div`
   width: 510px;
   overflow: hidden;
   position: relative;
+  padding-bottom: 2px;
   margin-bottom: 30px;
 `;
 
