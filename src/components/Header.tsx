@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import Logo from "../assets/Logo.svg";
+import Logo from '../assets/Logo.svg';
 
 const Header = () => {
   return (
@@ -59,5 +59,27 @@ const MenuContainer = styled.ul`
   & li {
     list-style: none;
     cursor: pointer;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 0;
+      width: 0px;
+      height: 2px;
+      background: #75d3d1;
+      transition-duration: 0.3s;
+    }
+
+    &:hover {
+      color: #75d3d1;
+      font-weight: 900;
+
+      &::after {
+        content: '';
+        width: 60px;
+      }
+    }
   }
 `;
