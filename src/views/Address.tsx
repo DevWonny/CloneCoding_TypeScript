@@ -5,7 +5,7 @@ import BackImage from '../assets/Map_background.jpg';
 
 const Address = () => {
   return (
-    <AddressWarp>
+    <AddressWarp className="Address">
       <AddressBackground />
       <Title>ADDRESS</Title>
       <SubTitle>매장 위치 및 전화번호</SubTitle>
@@ -25,6 +25,7 @@ const AddressWarp = styled.div`
   width: 100%;
   height: 100vh;
   position: relative;
+  padding-top: 100px;
   text-align: center;
 `;
 

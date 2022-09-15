@@ -5,6 +5,23 @@ import styled from 'styled-components';
 import Logo from '../assets/Logo.svg';
 
 const Header = () => {
+  // 해당 탭 클릭 시 위치 이동
+  const brandClick = () => {
+    console.log(document.querySelector('.Brand')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    document.querySelector('.Brand')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const MenuClick = () => {
+    document.querySelector('.Menu')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const AddressClick = () => {
+    document.querySelector('.Address')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const InquiryClick = () => {
+    document.querySelector('.Inquiry')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
   return (
     <HeaderWrap>
       <HeaderContainer>
@@ -13,10 +30,10 @@ const Header = () => {
         </LogoContainer>
 
         <MenuContainer>
-          <li>브랜드</li>
-          <li>메뉴</li>
-          <li>매장</li>
-          <li>가맹문의</li>
+          <li onClick={brandClick}>브랜드</li>
+          <li onClick={MenuClick}>메뉴</li>
+          <li onClick={AddressClick}>매장</li>
+          <li onClick={InquiryClick}>가맹문의</li>
         </MenuContainer>
       </HeaderContainer>
     </HeaderWrap>
@@ -28,6 +45,10 @@ export default Header;
 const HeaderWrap = styled.div`
   width: 100%;
   height: 100px;
+  top: 0;
+  position: fixed;
+  z-index: 9;
+  background-color: #fff;
 `;
 
 const HeaderContainer = styled.div`

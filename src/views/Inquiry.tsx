@@ -14,7 +14,7 @@ interface InquiryInputProps {
 
 const Inquiry = () => {
   return (
-    <InquiryWrap>
+    <InquiryWrap className="Inquiry">
       {/* 가맹문의 영역 */}
       <InquiryContainer>
         <InquiryInputWrap>
@@ -141,6 +141,7 @@ const InquiryWrap = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
+  position: relative;
 `;
 
 const InquiryContainer = styled.div`

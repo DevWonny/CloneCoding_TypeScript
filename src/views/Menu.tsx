@@ -13,7 +13,7 @@ import PizzaImg8 from '../assets/Pizza8.png';
 
 const Menu = () => {
   return (
-    <MenuWrap>
+    <MenuWrap className="Menu">
       <MenuHeaderContainer>
         <h1>MENU</h1>
         <span>피자선생의 도우가 맛있는 피자</span>
@@ -79,6 +79,7 @@ const MenuWrap = styled.div`
   width: 100%;
   height: 100vh;
   position: relative;
+  padding-top: 100px;
 `;
 
 const MenuHeaderContainer = styled.div`

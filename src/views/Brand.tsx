@@ -7,8 +7,9 @@ import BrandImage from '../assets/BrandImage.svg';
 const Brand = () => {
   // 해당 페이지 영역으로 이동될 경우 화면에 출력되는 컨텐츠들 모두 애니메이션 효과 필요. 해당 부분은 원래 페이지 참고하기.
   // 꼭 동일할 필요 없음
+
   return (
-    <BrandWrap>
+    <BrandWrap className="Brand">
       <BrandContainer>
         <BrandTextContainer>
           <BrandTextTitle>Brand</BrandTextTitle>
@@ -41,6 +42,7 @@ const BrandWrap = styled.div`
   width: 100%;
   height: 600px;
   position: relative;
+  padding-bottom: 100px;
 `;
 
 const BrandContainer = styled.div`
@@ -48,7 +50,7 @@ const BrandContainer = styled.div`
   height: 550px;
   position: absolute;
   background-color: #f3f3f3;
-  top: 25px;
+  top: 125px;
   left: 10%;
 `;
 
