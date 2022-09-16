@@ -7,6 +7,8 @@ import axios from 'axios';
 import BackImage from '../assets/InquiryBackground.jpg';
 import InquiryImage from '../assets/InquiryImage.jpg';
 
+import Loading from '../components/Loading';
+
 interface InquiryInputProps {
   isEmail: boolean;
   isBudget: boolean;
@@ -22,7 +24,9 @@ const Inquiry = () => {
   // 나이
   const [age, setAge] = useState('');
   // 연락처
-  const [number, setNumber] = useState('');
+  const [firstNumber, setFirstNumber] = useState('');
+  const [middleNumber, setMiddleNumber] = useState('');
+  const [lastNumber, setLastNumber] = useState('');
   // 이메일
   const [email, setEmail] = useState('');
   // 창업 예산
@@ -33,13 +37,15 @@ const Inquiry = () => {
   const [contents, setContents] = useState('');
   // 개인정보 수집 동의
   const [agreeCheck, setAgreeCheck] = useState(false);
+  // Loading
+  const [isLoading, setIsLoading] = useState(false);
 
-  const test = async () => {
+  const inquiryApi = async () => {
     const data = {
-      name: 'test1',
+      name,
       gender,
       age,
-      number,
+      number: `${firstNumber}${middleNumber}${lastNumber}`,
       email,
       budget,
       location,
@@ -47,138 +53,202 @@ const Inquiry = () => {
       agreeCheck,
     };
 
+    if (isLoading) {
+      return;
+    }
+
+    setIsLoading(true);
+
     try {
       const res = await axios.post('/Inquiry', data);
-
       console.log(res);
     } catch (err) {
       console.log('err', err);
     }
+
+    setIsLoading(false);
   };
 
-  useEffect(() => {
-    test();
-  }, []);
-
   return (
-    <InquiryWrap className="Inquiry">
-      {/* 가맹문의 영역 */}
-      <InquiryContainer>
-        <InquiryInputWrap>
-          <InquiryTitle>가맹문의</InquiryTitle>
-          <InquiryInputContainer>
-            {/* 작성자 input */}
-            <InquiryInputBox isBudgetContainer={false}>
-              <InquiryLabel htmlFor="name" isRequired={true}>
-                작성자
+    <>
+      {isLoading && <Loading />}
+      <InquiryWrap className="Inquiry">
+        {/* 가맹문의 영역 */}
+        <InquiryContainer>
+          <InquiryInputWrap>
+            <InquiryTitle>가맹문의</InquiryTitle>
+            <InquiryInputContainer>
+              {/* 작성자 input */}
+              <InquiryInputBox isBudgetContainer={false}>
+                <InquiryLabel htmlFor="name" isRequired={true}>
+                  작성자
+                </InquiryLabel>
+                <InquiryInput
+                  id="name"
+                  isEmail={false}
+                  isBudget={false}
+                  isLocation={false}
+                  isContents={false}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </InquiryInputBox>
+
+              {/* 성별 input */}
+              <InquiryInputBox isBudgetContainer={false}>
+                <InquiryLabel htmlFor="gender" isRequired={true}>
+                  성별
+                </InquiryLabel>
+                <InquirySelect id="gender" onChange={(e) => setGender(e.target.value)}>
+                  <option hidden>성별을 선택해주세요.</option>
+                  <option value="Men">남성</option>
+                  <option value="Women">여성</option>
+                </InquirySelect>
+              </InquiryInputBox>
+
+              {/* 나이 input */}
+              <InquiryInputBox isBudgetContainer={false}>
+                <InquiryLabel htmlFor="age" isRequired={true}>
+                  나이
+                </InquiryLabel>
+                <InquiryInput
+                  id="age"
+                  isEmail={false}
+                  isBudget={false}
+                  isLocation={false}
+                  isContents={false}
+                  value={age}
+                  onChange={(e) => setAge(e.target.value)}
+                />
+              </InquiryInputBox>
+            </InquiryInputContainer>
+            <InquiryInputContainer>
+              {/* 연락처 input */}
+              <InquiryInputBox isBudgetContainer={false}>
+                <InquiryLabel htmlFor="firstNumber" isRequired={true}>
+                  연락처
+                </InquiryLabel>
+                <InquirySelect id="firstNumber" onChange={(e) => setFirstNumber(e.target.value)}>
+                  <option hidden>번호를 선택해주세요.</option>
+                  <option value="010">010</option>
+                  <option value="011">011</option>
+                  <option value="016">016</option>
+                  <option value="017">017</option>
+                  <option value="018">018</option>
+                  <option value="019">019</option>
+                </InquirySelect>
+              </InquiryInputBox>
+
+              <InquiryInputBox isBudgetContainer={false}>
+                <InquiryLabel htmlFor="middleNumber" isRequired={false}></InquiryLabel>
+                <InquiryInput
+                  id="middleNumber"
+                  isEmail={false}
+                  isBudget={false}
+                  isLocation={false}
+                  isContents={false}
+                  value={middleNumber}
+                  onChange={(e) => setMiddleNumber(e.target.value)}
+                />
+              </InquiryInputBox>
+
+              <InquiryInputBox isBudgetContainer={false}>
+                <InquiryLabel htmlFor="lastNumber" isRequired={false}></InquiryLabel>
+                <InquiryInput
+                  id="lastNumber"
+                  isEmail={false}
+                  isBudget={false}
+                  isLocation={false}
+                  isContents={false}
+                  value={lastNumber}
+                  onChange={(e) => setLastNumber(e.target.value)}
+                />
+              </InquiryInputBox>
+            </InquiryInputContainer>
+            <InquiryInputContainer>
+              {/* Email input */}
+              <InquiryInputBox isBudgetContainer={false}>
+                <InquiryLabel htmlFor="email" isRequired={true}>
+                  이메일
+                </InquiryLabel>
+                <InquiryInput
+                  id="email"
+                  isEmail={true}
+                  isBudget={false}
+                  isLocation={false}
+                  isContents={false}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </InquiryInputBox>
+            </InquiryInputContainer>
+            <InquiryInputContainer>
+              {/* 창업예산 input */}
+              <InquiryInputBox isBudgetContainer={true}>
+                <InquiryLabel htmlFor="budget" isRequired={true}>
+                  창업예산
+                </InquiryLabel>
+                <InquiryInput
+                  id="budget"
+                  isEmail={false}
+                  isBudget={true}
+                  isLocation={false}
+                  isContents={false}
+                  value={budget}
+                  onChange={(e) => setBudget(e.target.value)}
+                />
+              </InquiryInputBox>
+
+              {/* 희망지역 input */}
+              <InquiryInputBox isBudgetContainer={true}>
+                <InquiryLabel htmlFor="location" isRequired={true}>
+                  희망지역
+                </InquiryLabel>
+                <InquiryInput
+                  id="location"
+                  isEmail={false}
+                  isBudget={false}
+                  isLocation={true}
+                  isContents={false}
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                />
+              </InquiryInputBox>
+            </InquiryInputContainer>
+
+            <ContentsWrap>
+              {/* 문의 내용 */}
+              <InquiryLabel htmlFor="contents" isRequired={false}>
+                문의내용
               </InquiryLabel>
-              <InquiryInput id="name" isEmail={false} isBudget={false} isLocation={false} isContents={false} />
-            </InquiryInputBox>
+              <ContentsTextArea value={contents} onChange={(e) => setContents(e.target.value)} />
+            </ContentsWrap>
+            <CheckBoxInput type="checkbox" id="agreeCheck" />
+            <CheckBoxLabel htmlFor="agreeCheck" onClick={(e) => setAgreeCheck(!agreeCheck)}>
+              <CheckBox />
+              <span>개인정보 수집 및 이용에 동의합니다.</span>
+            </CheckBoxLabel>
+            <SubmitButton onClick={inquiryApi}>상담신청</SubmitButton>
+          </InquiryInputWrap>
+        </InquiryContainer>
 
-            {/* 성별 input */}
-            <InquiryInputBox isBudgetContainer={false}>
-              <InquiryLabel htmlFor="gender" isRequired={true}>
-                성별
-              </InquiryLabel>
-              <InquirySelect id="gender">
-                <option value="gender1">남성</option>
-                <option value="gender2">여성</option>
-              </InquirySelect>
-            </InquiryInputBox>
+        {/* 회사 위치 및 연락처 영역 */}
+        <CompanyContainer>
+          <CompanyTextContainer>
+            <CompanyTitle>Company</CompanyTitle>
+            <CompanyAddressTextContainer>
+              <h5>위치안내</h5>
+              <p>서울특별시 구로구 공원로 47 (구로동, 도림두산베어스타워) 608호</p>
+              <p>(608ho, 47, Gonwon-ro, Guro-gu, Seoul, Republic of Korea 680)</p>
+            </CompanyAddressTextContainer>
 
-            {/* 나이 input */}
-            <InquiryInputBox isBudgetContainer={false}>
-              <InquiryLabel htmlFor="age" isRequired={true}>
-                나이
-              </InquiryLabel>
-              <InquiryInput id="age" isEmail={false} isBudget={false} isLocation={false} isContents={false} />
-            </InquiryInputBox>
-          </InquiryInputContainer>
-          <InquiryInputContainer>
-            {/* 연락처 input */}
-            <InquiryInputBox isBudgetContainer={false}>
-              <InquiryLabel htmlFor="firstNumber" isRequired={true}>
-                연락처
-              </InquiryLabel>
-              <InquirySelect id="firstNumber">
-                <option value="firstNumber1">010</option>
-                <option value="firstNumber2">011</option>
-                <option value="firstNumber3">016</option>
-                <option value="firstNumber4">017</option>
-                <option value="firstNumber5">018</option>
-                <option value="firstNumber6">019</option>
-              </InquirySelect>
-            </InquiryInputBox>
-
-            <InquiryInputBox isBudgetContainer={false}>
-              <InquiryLabel htmlFor="middleNumber" isRequired={false}></InquiryLabel>
-              <InquiryInput id="middleNumber" isEmail={false} isBudget={false} isLocation={false} isContents={false} />
-            </InquiryInputBox>
-
-            <InquiryInputBox isBudgetContainer={false}>
-              <InquiryLabel htmlFor="lastNumber" isRequired={false}></InquiryLabel>
-              <InquiryInput id="lastNumber" isEmail={false} isBudget={false} isLocation={false} isContents={false} />
-            </InquiryInputBox>
-          </InquiryInputContainer>
-          <InquiryInputContainer>
-            {/* Email input */}
-            <InquiryInputBox isBudgetContainer={false}>
-              <InquiryLabel htmlFor="email" isRequired={true}>
-                이메일
-              </InquiryLabel>
-              <InquiryInput id="email" isEmail={true} isBudget={false} isLocation={false} isContents={false} />
-            </InquiryInputBox>
-          </InquiryInputContainer>
-          <InquiryInputContainer>
-            {/* 창업예산 input */}
-            <InquiryInputBox isBudgetContainer={true}>
-              <InquiryLabel htmlFor="budget" isRequired={true}>
-                창업예산
-              </InquiryLabel>
-              <InquiryInput id="budget" isEmail={false} isBudget={true} isLocation={false} isContents={false} />
-            </InquiryInputBox>
-
-            {/* 희망지역 input */}
-            <InquiryInputBox isBudgetContainer={true}>
-              <InquiryLabel htmlFor="location" isRequired={true}>
-                희망지역
-              </InquiryLabel>
-              <InquiryInput id="location" isEmail={false} isBudget={false} isLocation={true} isContents={false} />
-            </InquiryInputBox>
-          </InquiryInputContainer>
-
-          <ContentsWrap>
-            {/* 문의 내용 */}
-            <InquiryLabel htmlFor="contents" isRequired={false}>
-              문의내용
-            </InquiryLabel>
-            <ContentsTextArea></ContentsTextArea>
-          </ContentsWrap>
-          <CheckBoxInput type="checkbox" id="agreeCheck" />
-          <CheckBoxLabel htmlFor="agreeCheck">
-            <CheckBox />
-            <span>개인정보 수집 및 이용에 동의합니다.</span>
-          </CheckBoxLabel>
-          <SubmitButton>상담신청</SubmitButton>
-        </InquiryInputWrap>
-      </InquiryContainer>
-
-      {/* 회사 위치 및 연락처 영역 */}
-      <CompanyContainer>
-        <CompanyTextContainer>
-          <CompanyTitle>Company</CompanyTitle>
-          <CompanyAddressTextContainer>
-            <h5>위치안내</h5>
-            <p>서울특별시 구로구 공원로 47 (구로동, 도림두산베어스타워) 608호</p>
-            <p>(608ho, 47, Gonwon-ro, Guro-gu, Seoul, Republic of Korea 680)</p>
-          </CompanyAddressTextContainer>
-
-          <Consulting>
-            <span>가맹상담&nbsp;&nbsp;&nbsp;&nbsp;</span>010-5454-7896
-          </Consulting>
-        </CompanyTextContainer>
-      </CompanyContainer>
-    </InquiryWrap>
+            <Consulting>
+              <span>가맹상담&nbsp;&nbsp;&nbsp;&nbsp;</span>010-5454-7896
+            </Consulting>
+          </CompanyTextContainer>
+        </CompanyContainer>
+      </InquiryWrap>
+    </>
   );
 };
 
