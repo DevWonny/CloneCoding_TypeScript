@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import styled from 'styled-components';
+
+import axios from 'axios';
 
 import BackImage from '../assets/InquiryBackground.jpg';
 import InquiryImage from '../assets/InquiryImage.jpg';
@@ -13,6 +15,51 @@ interface InquiryInputProps {
 }
 
 const Inquiry = () => {
+  // 작성자
+  const [name, setName] = useState('');
+  // 성별
+  const [gender, setGender] = useState('');
+  // 나이
+  const [age, setAge] = useState('');
+  // 연락처
+  const [number, setNumber] = useState('');
+  // 이메일
+  const [email, setEmail] = useState('');
+  // 창업 예산
+  const [budget, setBudget] = useState('');
+  // 희망지역
+  const [location, setLocation] = useState('');
+  // 문의 내용
+  const [contents, setContents] = useState('');
+  // 개인정보 수집 동의
+  const [agreeCheck, setAgreeCheck] = useState(false);
+
+  const test = async () => {
+    const data = {
+      name: 'test1',
+      gender,
+      age,
+      number,
+      email,
+      budget,
+      location,
+      contents,
+      agreeCheck,
+    };
+
+    try {
+      const res = await axios.post('/Inquiry', data);
+
+      console.log(res);
+    } catch (err) {
+      console.log('err', err);
+    }
+  };
+
+  useEffect(() => {
+    test();
+  }, []);
+
   return (
     <InquiryWrap className="Inquiry">
       {/* 가맹문의 영역 */}
@@ -93,10 +140,10 @@ const Inquiry = () => {
 
             {/* 희망지역 input */}
             <InquiryInputBox isBudgetContainer={true}>
-              <InquiryLabel htmlFor="gender" isRequired={true}>
+              <InquiryLabel htmlFor="location" isRequired={true}>
                 희망지역
               </InquiryLabel>
-              <InquiryInput id="gender" isEmail={false} isBudget={false} isLocation={true} isContents={false} />
+              <InquiryInput id="location" isEmail={false} isBudget={false} isLocation={true} isContents={false} />
             </InquiryInputBox>
           </InquiryInputContainer>
 

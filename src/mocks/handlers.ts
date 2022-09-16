@@ -1,17 +1,30 @@
 import { rest } from 'msw';
 
-const todos = ['eat', 'sleep', 'study'];
+interface InquiryBody {
+  name: string
+  gender: string
+  age: string
+  number: string
+  email: string
+  budget: string
+  location: string
+  contents: string
+  agreeCheck: boolean
+}
+
+interface InquiryResponse {
+  name: string
+}
 
 export const handlers = [
-  // 할 일 목록
-  rest.get('/todos', (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(todos))
-  }),
+  rest.post<InquiryBody, InquiryResponse>('/Inquiry', async (req, res, ctx) => {
+    const { name, gender, age, number, email, budget, location, contents, agreeCheck } = await req.json();
 
-  // 할 일 추가
-  rest.post('/todos', (req, res, ctx) => {
-    console.log(req);
-    // todos.push(req);
-    return res(ctx.status(201));
+
+    return res(
+      ctx.json({
+        name, gender, age, number, email, budget, location, contents, agreeCheck
+      })
+    )
   })
 ]
