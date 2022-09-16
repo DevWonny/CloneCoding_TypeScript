@@ -61,7 +61,10 @@ const Inquiry = () => {
 
     try {
       const res = await axios.post('/Inquiry', data);
-      console.log(res);
+      if (res) {
+        console.log(res);
+        alert(`${res.data.name}님, 상담신청이 완료되었습니다!`);
+      }
     } catch (err) {
       console.log('err', err);
     }
