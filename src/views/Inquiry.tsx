@@ -92,8 +92,16 @@ const Inquiry = () => {
                   isBudget={false}
                   isLocation={false}
                   isContents={false}
+                  maxLength={20}
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) =>
+                    setName(
+                      e.target.value.replaceAll(
+                        /[^a-z|A-Z|ㄱ-ㅎ|가-힣|\u318D\u119E\u11A2\u2022\u2025a\u00B7\uFE55ㅏㅑㅓㅕㅗㅛㅜㅠㅣㅡㅢㅘㅚㅝㅐㅒㅔㅖㅟ]/g,
+                        ''
+                      )
+                    )
+                  }
                 />
               </InquiryInputBox>
 
@@ -120,8 +128,9 @@ const Inquiry = () => {
                   isBudget={false}
                   isLocation={false}
                   isContents={false}
+                  maxLength={3}
                   value={age}
-                  onChange={(e) => setAge(e.target.value)}
+                  onChange={(e) => setAge(e.target.value.replaceAll(/[^0-9]/g, ''))}
                 />
               </InquiryInputBox>
             </InquiryInputContainer>
@@ -229,7 +238,7 @@ const Inquiry = () => {
 
             <CheckBoxInput type="checkbox" id="agreeCheck" />
             <CheckBoxLabel htmlFor="agreeCheck" onClick={(e) => setAgreeCheck(!agreeCheck)}>
-              <CheckBox />
+              <CheckBox agreeCheck={agreeCheck} />
               <span>개인정보 수집 및 이용에 동의합니다.</span>
             </CheckBoxLabel>
             <SubmitButton onClick={inquiryApi}>상담신청</SubmitButton>
@@ -369,10 +378,11 @@ const CheckBoxInput = styled.input`
   display: none;
 `;
 
-const CheckBox = styled.div`
+const CheckBox = styled.div<{ agreeCheck: boolean }>`
   width: 14px;
   height: 14px;
-  background: #fff;
+  /* background: #fff; */
+  background: ${(props) => (props.agreeCheck ? '#000' : '#fff')};
   border: 1px solid #000;
   border-radius: 3px;
   box-sizing: border-box;
@@ -383,6 +393,9 @@ const CheckBox = styled.div`
 const CheckBoxLabel = styled.label`
   display: flex;
   font-size: 14px;
+  align-items: center;
+  max-width: 50%;
+
   & span {
     cursor: pointer;
   }
