@@ -40,7 +40,125 @@ const Inquiry = () => {
   // Loading
   const [isLoading, setIsLoading] = useState(false);
 
+  // Validate
+  // name validate
+  const nameValidate = () => {
+    if (!name) {
+      alert('작성자 명을 입력해주세요.');
+      return false;
+    }
+    return true;
+  };
+
+  // gender validate
+  const genderValidate = () => {
+    if (!gender) {
+      alert('성별을 확인해주세요.');
+      return false;
+    }
+    return true;
+  };
+
+  // age validate
+  const ageValidate = () => {
+    if (!age) {
+      alert('나이를 입력해주세요.');
+      return false;
+    }
+    return true;
+  };
+
+  // number validate
+  const numberValidate = () => {
+    if (!firstNumber || !middleNumber || !lastNumber) {
+      alert('연락처를 확인해주세요.');
+      return false;
+    }
+    return true;
+  };
+
+  // email validate
+  const emailValidate = () => {
+    const emailReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+
+    if (!email) {
+      alert('이메일을 입력해주세요.');
+      return false;
+    }
+
+    if (!emailReg.test(email)) {
+      alert('이메일을 확인해주세요.');
+      return false;
+    }
+    return true;
+  };
+
+  // budget validate
+  const budgetValidate = () => {
+    if (!budget) {
+      alert('창업예산을 입력해주세요.');
+      return false;
+    }
+    return true;
+  };
+
+  // location validate
+  const locationVlidate = () => {
+    if (!location) {
+      alert('희망지역을 입력해주세요.');
+      return false;
+    }
+    return true;
+  };
+
+  // agreeCheck validate
+  const agreeCheckValidate = () => {
+    if (!agreeCheck) {
+      alert('개인정보 수집 및 이용에 동의해주세요.');
+      return false;
+    }
+    return true;
+  };
+
+  // onValidate
+  const onValidate = () => {
+    if (!nameValidate()) {
+      return false;
+    }
+    if (!genderValidate()) {
+      return false;
+    }
+    if (!ageValidate()) {
+      return false;
+    }
+    if (!numberValidate()) {
+      return false;
+    }
+    if (!emailValidate()) {
+      return false;
+    }
+    if (!budgetValidate()) {
+      return false;
+    }
+    if (!locationVlidate()) {
+      return false;
+    }
+    if (!agreeCheckValidate()) {
+      return false;
+    }
+
+    return true;
+  };
+
+  // MSW api 호출
   const inquiryApi = async () => {
+    if (!onValidate()) {
+      return;
+    }
+    if (isLoading) {
+      return;
+    }
+
     const data = {
       name,
       gender,
@@ -52,10 +170,6 @@ const Inquiry = () => {
       contents,
       agreeCheck,
     };
-
-    if (isLoading) {
-      return;
-    }
 
     setIsLoading(true);
 
@@ -111,7 +225,9 @@ const Inquiry = () => {
                   성별
                 </InquiryLabel>
                 <InquirySelect id="gender" onChange={(e) => setGender(e.target.value)}>
-                  <option hidden>성별을 선택해주세요.</option>
+                  <option hidden value="genderSelect">
+                    성별을 선택해주세요.
+                  </option>
                   <option value="Men">남성</option>
                   <option value="Women">여성</option>
                 </InquirySelect>
