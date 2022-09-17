@@ -159,8 +159,9 @@ const Inquiry = () => {
                   isBudget={false}
                   isLocation={false}
                   isContents={false}
+                  maxLength={4}
                   value={middleNumber}
-                  onChange={(e) => setMiddleNumber(e.target.value)}
+                  onChange={(e) => setMiddleNumber(e.target.value.replaceAll(/[^0-9]/g, ''))}
                 />
               </InquiryInputBox>
 
@@ -172,8 +173,9 @@ const Inquiry = () => {
                   isBudget={false}
                   isLocation={false}
                   isContents={false}
+                  maxLength={4}
                   value={lastNumber}
-                  onChange={(e) => setLastNumber(e.target.value)}
+                  onChange={(e) => setLastNumber(e.target.value.replaceAll(/[^0-9]/g, ''))}
                 />
               </InquiryInputBox>
             </InquiryInputContainer>
@@ -207,7 +209,7 @@ const Inquiry = () => {
                   isLocation={false}
                   isContents={false}
                   value={budget}
-                  onChange={(e) => setBudget(e.target.value)}
+                  onChange={(e) => setBudget(e.target.value.replaceAll(/[^0-9]/g, ''))}
                 />
               </InquiryInputBox>
 
@@ -223,7 +225,14 @@ const Inquiry = () => {
                   isLocation={true}
                   isContents={false}
                   value={location}
-                  onChange={(e) => setLocation(e.target.value)}
+                  onChange={(e) =>
+                    setLocation(
+                      e.target.value.replaceAll(
+                        /[^a-z|A-Z|ㄱ-ㅎ|가-힣|\u318D\u119E\u11A2\u2022\u2025a\u00B7\uFE55ㅏㅑㅓㅕㅗㅛㅜㅠㅣㅡㅢㅘㅚㅝㅐㅒㅔㅖㅟ]/g,
+                        ''
+                      )
+                    )
+                  }
                 />
               </InquiryInputBox>
             </InquiryInputContainer>
@@ -232,8 +241,9 @@ const Inquiry = () => {
               {/* 문의 내용 */}
               <InquiryLabel htmlFor="contents" isRequired={false}>
                 문의내용
+                <span>(500자 이내)</span>
               </InquiryLabel>
-              <ContentsTextArea value={contents} onChange={(e) => setContents(e.target.value)} />
+              <ContentsTextArea value={contents} maxLength={500} onChange={(e) => setContents(e.target.value)} />
             </ContentsWrap>
 
             <CheckBoxInput type="checkbox" id="agreeCheck" />
@@ -360,6 +370,10 @@ const InquiryLabel = styled.label<{ isRequired: boolean }>`
     ${(props) => (props.isRequired ? 'content : "*"' : 'content : ""')};
     margin-left: 5px;
     color: #e73535;
+  }
+
+  & span {
+    font-size: 12px;
   }
 `;
 
