@@ -226,6 +226,7 @@ const Inquiry = () => {
               </InquiryLabel>
               <ContentsTextArea value={contents} onChange={(e) => setContents(e.target.value)} />
             </ContentsWrap>
+
             <CheckBoxInput type="checkbox" id="agreeCheck" />
             <CheckBoxLabel htmlFor="agreeCheck" onClick={(e) => setAgreeCheck(!agreeCheck)}>
               <CheckBox />
@@ -359,7 +360,7 @@ const ContentsTextArea = styled.textarea`
   resize: none;
   border: 1px solid #000;
   box-sizing: border-box;
-  margin-top: 10px;
+  margin: 10px 0;
   background-color: transparent;
   outline: none;
 `;
