@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Header from '../components/Header';
 import MainBanner from './MainBanner';
@@ -7,8 +7,6 @@ import Menu from './Menu';
 import Address from './Address';
 import Inquiry from './Inquiry';
 import Footer from '../components/Footer';
-
-import styled from 'styled-components';
 
 const Main = () => {
   return (
