@@ -542,6 +542,11 @@ const SubmitButton = styled.div`
   line-height: 30px;
   margin-top: 30px;
   cursor: pointer;
+
+  &:hover {
+    background: #000;
+    color: #fff;
+  }
 `;
 
 const CompanyContainer = styled.div`
@@ -602,7 +607,6 @@ const Consulting = styled.div`
   border: 2px solid #000;
   border-radius: 50px;
   box-sizing: border-box;
-  cursor: pointer;
   margin: 30px 0;
 
   & span {

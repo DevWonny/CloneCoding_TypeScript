@@ -7,6 +7,7 @@ import Menu from './Menu';
 import Address from './Address';
 import Inquiry from './Inquiry';
 import Footer from '../components/Footer';
+import Modal from '../components/Modal';
 
 const Main = () => {
   return (
@@ -18,6 +19,7 @@ const Main = () => {
       <Address />
       <Inquiry />
       <Footer />
+      <Modal />
     </>
   );
 };
