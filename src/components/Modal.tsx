@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 import styled from 'styled-components';
 
-const Modal = () => {
+interface propsType {
+  isTermsOfService: boolean;
+  setIsTermsOfService: Dispatch<SetStateAction<boolean>>;
+  isPrivacyPolicy: boolean;
+  setIsPrivacyPolicy: Dispatch<SetStateAction<boolean>>;
+}
+
+const Modal = (props: propsType) => {
   return (
     <ModalWrap>
-      <ModalTitle>이용약관(Terms Of Service)</ModalTitle>
-      <ModalContent></ModalContent>
+      <ModalClose
+        onClick={() => {
+          props.setIsTermsOfService(false);
+          props.setIsPrivacyPolicy(false);
+        }}
+      />
+      <ModalTitle>
+        {props.isTermsOfService ? '이용약관(Terms Of Service)' : '개인정보취급방침(Privacy Policy)'}
+      </ModalTitle>
     </ModalWrap>
   );
 };
@@ -26,6 +40,7 @@ const ModalWrap = styled.div`
   border: 1px solid #000;
   border-radius: 10px;
   box-sizing: border-box;
+  background: #7b7b7b;
 `;
 
 const ModalTitle = styled.h1`
@@ -34,15 +49,41 @@ const ModalTitle = styled.h1`
   font-weight: 700;
 `;
 
-const ModalContent = styled.div`
-  width: 100%;
-  height: 90%;
-  overflow-y: scroll;
-  background-color: red;
+const ModalClose = styled.div`
+  width: 30px;
+  height: 30px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  box-sizing: border-box;
   position: absolute;
-  top: 50px;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto;
+  top: 5px;
+  right: 5px;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: #000;
+    border: 1px solid #000;
+  }
+
+  &::before {
+    content: '';
+    width: 2px;
+    height: 100%;
+    rotate: 45deg;
+    position: absolute;
+    left: 13px;
+    top: 0;
+    background: #fff;
+  }
+  &::after {
+    content: '';
+    width: 2px;
+    height: 100%;
+    rotate: -45deg;
+    position: absolute;
+    left: 13px;
+    top: 0;
+    background: #fff;
+  }
 `;

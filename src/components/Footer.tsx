@@ -1,20 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styled from 'styled-components';
+import Modal from './Modal';
 
 const Footer = () => {
+  // Modal State
+  const [isTermsOfService, setIsTermsOfService] = useState(false);
+  const [isPrivacyPolicy, setIsPrivacyPolicy] = useState(false);
+
   return (
-    <FooterWrap>
-      <FooterContainer>
-        <FooterMenuContainer>
-          <span>회사소개</span>
-          <span className="cursor">이용약관</span>
-          <span className="cursor">개인정보취급방침</span>
-          <span>제휴문의</span>
-        </FooterMenuContainer>
-        <FooterCopyright>COPYRIGHT LOGO. All Rights reserved</FooterCopyright>
-      </FooterContainer>
-    </FooterWrap>
+    <>
+      <FooterWrap>
+        <FooterContainer>
+          <FooterMenuContainer>
+            <span>회사소개</span>
+            <span
+              className="cursor"
+              onClick={() => {
+                setIsTermsOfService(true);
+                setIsPrivacyPolicy(false);
+              }}>
+              이용약관
+            </span>
+            <span
+              className="cursor"
+              onClick={() => {
+                setIsTermsOfService(false);
+                setIsPrivacyPolicy(true);
+              }}>
+              개인정보취급방침
+            </span>
+            <span>제휴문의</span>
+          </FooterMenuContainer>
+          <FooterCopyright>COPYRIGHT LOGO. All Rights reserved</FooterCopyright>
+        </FooterContainer>
+      </FooterWrap>
+
+      {(isTermsOfService || isPrivacyPolicy) && (
+        <Modal
+          isTermsOfService={isTermsOfService}
+          setIsTermsOfService={setIsTermsOfService}
+          isPrivacyPolicy={isPrivacyPolicy}
+          setIsPrivacyPolicy={setIsPrivacyPolicy}
+        />
+      )}
+    </>
   );
 };
 

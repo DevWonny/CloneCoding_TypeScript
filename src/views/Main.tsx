@@ -19,7 +19,6 @@ const Main = () => {
       <Address />
       <Inquiry />
       <Footer />
-      <Modal />
     </>
   );
 };
