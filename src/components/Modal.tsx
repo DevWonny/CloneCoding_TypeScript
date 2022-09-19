@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
 
 import styled from 'styled-components';
 
@@ -10,22 +10,41 @@ interface propsType {
 }
 
 const Modal = (props: propsType) => {
+  useEffect(() => {
+    document.body.style.overflow = `hidden`;
+    return () => {
+      document.body.style.overflow = `auto`;
+    };
+  }, []);
+
   return (
-    <ModalWrap>
-      <ModalClose
-        onClick={() => {
-          props.setIsTermsOfService(false);
-          props.setIsPrivacyPolicy(false);
-        }}
-      />
-      <ModalTitle>
-        {props.isTermsOfService ? '이용약관(Terms Of Service)' : '개인정보취급방침(Privacy Policy)'}
-      </ModalTitle>
-    </ModalWrap>
+    <>
+      <BackWrap />
+      <ModalWrap>
+        <ModalClose
+          onClick={() => {
+            props.setIsTermsOfService(false);
+            props.setIsPrivacyPolicy(false);
+          }}
+        />
+        <ModalTitle>
+          {props.isTermsOfService ? '이용약관(Terms Of Service)' : '개인정보취급방침(Privacy Policy)'}
+        </ModalTitle>
+      </ModalWrap>
+    </>
   );
 };
 
 export default Modal;
+
+const BackWrap = styled.div`
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+`;
 
 const ModalWrap = styled.div`
   width: 40%;

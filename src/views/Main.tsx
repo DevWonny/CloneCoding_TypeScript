@@ -7,7 +7,8 @@ import Menu from './Menu';
 import Address from './Address';
 import Inquiry from './Inquiry';
 import Footer from '../components/Footer';
-import Modal from '../components/Modal';
+
+import styled from 'styled-components';
 
 const Main = () => {
   return (
