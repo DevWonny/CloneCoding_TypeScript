@@ -12,7 +12,7 @@ const Address = () => {
 
       {/* Map 영역 */}
       <AddressMapWrap>
-        <AddressPostcodeContainer>Daum PostCode</AddressPostcodeContainer>
+        <AddressPostcodeContainer>test</AddressPostcodeContainer>
         <AddressMapContainer>Kakao Map</AddressMapContainer>
       </AddressMapWrap>
     </AddressWarp>
