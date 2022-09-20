@@ -7,7 +7,6 @@ import Menu from './Menu';
 import Address from './Address';
 import Inquiry from './Inquiry';
 import Footer from '../components/Footer';
-import Map from '../components/Map';
 
 const Main = () => {
   return (
@@ -19,7 +18,6 @@ const Main = () => {
       <Address />
       <Inquiry />
       <Footer />
-      <Map />
     </>
   );
 };

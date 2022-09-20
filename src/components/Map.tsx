@@ -9,7 +9,6 @@ declare global {
 
 const Map = () => {
   // map 생성
-
   useEffect(() => {
     const container = document.querySelector('.mapContainer');
     const options = {
