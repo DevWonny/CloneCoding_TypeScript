@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 import styled from 'styled-components';
 import BackImage from '../assets/Map_background.jpg';
 
+import Map from '../components/Map';
+
 const Address = () => {
+  const mapRef = useRef<HTMLDivElement>(null);
   return (
     <AddressWarp className="Address">
       <AddressBackground />
@@ -13,7 +16,9 @@ const Address = () => {
       {/* Map 영역 */}
       <AddressMapWrap>
         <AddressPostcodeContainer>test</AddressPostcodeContainer>
-        <AddressMapContainer>Kakao Map</AddressMapContainer>
+        <AddressMapContainer ref={mapRef}>
+          <Map />
+        </AddressMapContainer>
       </AddressMapWrap>
     </AddressWarp>
   );
