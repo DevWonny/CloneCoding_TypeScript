@@ -170,6 +170,11 @@ const AddressListContent = styled.div`
     bottom: 0;
     margin: auto;
   }
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(186, 186, 186, 0.1);
+  }
 `;
 
 const AddressMapContainer = styled.div`
