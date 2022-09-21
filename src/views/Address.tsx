@@ -2,12 +2,13 @@ import React, { useRef, useState, useEffect } from 'react';
 
 import styled from 'styled-components';
 import BackImage from '../assets/Map_background.jpg';
+import LocationImage from '../assets/Location.svg';
 
 import Map from '../components/Map';
 
 const Address = () => {
   // marker
-  const markers = [];
+  const [marker, setMarker] = useState([]);
 
   // 장소 검색 객체 생성
   const ps = new window.kakao.maps.services.Places();
@@ -23,13 +24,11 @@ const Address = () => {
   };
 
   // 장소 검색이 완료되었을 때 호출되는 콜백함수
-  const placesSearchCB = (data: any, status: any, pagination: any) => {
+  const placesSearchCB = (data: any, status: any) => {
     if (status === window.kakao.maps.services.Status.OK) {
       // 정상적으로 검색이 완료 된 경우
       // 검색 목록과 마커를 출력
       displayPlaces(data);
-      // 페이지 번호 출력
-      displayPagination(pagination);
     } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
       alert('검색 결과가 존재하지 않습니다.');
       return;
@@ -41,16 +40,14 @@ const Address = () => {
 
   // 검색 결과 목록 및 마커를 출력하는 함수
   const displayPlaces = (places: any) => {
-    console.log('🚀 ~ file: Address.tsx ~ line 47 ~ displayPlaces ~ places', places);
-  };
-
-  // rjator
-  const displayPagination = (pagination: any) => {
-    console.log('🚀 ~ file: Address.tsx ~ line 52 ~ displayPagination ~ pagination', pagination);
+    setMarker(places);
+    // console.log('🚀 ~ file: Address.tsx ~ line 47 ~ displayPlaces ~ places', places);
   };
 
   // 키워드로 장소 검색
-  searchPlaces();
+  useEffect(() => {
+    searchPlaces();
+  }, []);
 
   return (
     <AddressWarp className="Address">
@@ -61,7 +58,20 @@ const Address = () => {
       {/* Map 영역 */}
       <AddressMapWrap>
         {/* list */}
-        <AddressListContainer></AddressListContainer>
+        <AddressListContainer>
+          {marker.length > 0 &&
+            marker.map((el: any) => {
+              console.log(el);
+              return (
+                <AddressListContent>
+                  <h3>{el.place_name}</h3>
+                  <p>{el.address_name}</p>
+                  <p>{el.phone}</p>
+                  <img src={LocationImage} alt="Location_image" />
+                </AddressListContent>
+              );
+            })}
+        </AddressListContainer>
 
         {/* map */}
         <AddressMapContainer>
@@ -120,7 +130,46 @@ const AddressMapWrap = styled.div`
 const AddressListContainer = styled.div`
   width: 400px;
   height: 100%;
-  background: gray;
+  background-color: #fff;
+  overflow-y: scroll;
+  position: relative;
+`;
+const AddressListContent = styled.div`
+  width: 95%;
+  height: 15%;
+  position: relative;
+  margin: 5px auto;
+  text-align: left;
+  border: 2px solid #bababa;
+  box-sizing: border-box;
+  border-radius: 5px;
+
+  & h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    position: relative;
+    left: 5px;
+    top: 10px;
+  }
+
+  & p {
+    font-size: 14px;
+    color: #bababa;
+    margin: 0 0 5px 0;
+    position: relative;
+    left: 5px;
+  }
+
+  & img {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    right: 5px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
 `;
 
 const AddressMapContainer = styled.div`
