@@ -4,17 +4,30 @@ import styled from 'styled-components';
 import BackImage from '../assets/Map_background.jpg';
 import LocationImage from '../assets/Location.svg';
 
-import Map from '../components/Map';
-
 const Address = () => {
   // marker
   const [marker, setMarker] = useState([]);
+
+  // map
+  const [map, setMap] = useState(null);
+
+  // map ref
+  const mapRef = useRef<HTMLDivElement>(null);
 
   // 장소 검색 객체 생성
   const ps = new window.kakao.maps.services.Places();
 
   // 검색결과 목록 및 마커를 클릭 했을 때 장소명을 표출할 인포윈도우 생성
   const infoWindow = new window.kakao.maps.InfoWindow({ zIndex: 1 });
+
+  // 지도 생성
+  useEffect(() => {
+    const options = {
+      center: new window.kakao.maps.LatLng(35.57, 128.15),
+      level: 13,
+    };
+    setMap(new window.kakao.maps.Map(mapRef.current, options));
+  }, []);
 
   const searchPlaces = () => {
     const keyword = '피자선생';
@@ -27,8 +40,8 @@ const Address = () => {
   const placesSearchCB = (data: any, status: any) => {
     if (status === window.kakao.maps.services.Status.OK) {
       // 정상적으로 검색이 완료 된 경우
-      // 검색 목록과 마커를 출력
-      displayPlaces(data);
+      // 리스트에 data 출력
+      setMarker(data);
     } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
       alert('검색 결과가 존재하지 않습니다.');
       return;
@@ -36,12 +49,6 @@ const Address = () => {
       alert('오류가 발생하였습니다.');
       return;
     }
-  };
-
-  // 검색 결과 목록 및 마커를 출력하는 함수
-  const displayPlaces = (places: any) => {
-    setMarker(places);
-    // console.log('🚀 ~ file: Address.tsx ~ line 47 ~ displayPlaces ~ places', places);
   };
 
   // 키워드로 장소 검색
@@ -61,7 +68,6 @@ const Address = () => {
         <AddressListContainer>
           {marker.length > 0 &&
             marker.map((el: any) => {
-              console.log(el);
               return (
                 <AddressListContent>
                   <h3>{el.place_name}</h3>
@@ -74,9 +80,7 @@ const Address = () => {
         </AddressListContainer>
 
         {/* map */}
-        <AddressMapContainer>
-          <Map />
-        </AddressMapContainer>
+        <AddressMapContainer ref={mapRef}></AddressMapContainer>
       </AddressMapWrap>
     </AddressWarp>
   );
