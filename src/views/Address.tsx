@@ -56,7 +56,7 @@ const Address = () => {
     }
   };
 
-  // custom overay
+  // custom overlay
   useEffect(() => {
     if (!!map) {
       const makeCustomOverlay = (list: any) => {
