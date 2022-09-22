@@ -11,6 +11,11 @@ const Address = () => {
   // map
   const [map, setMap] = useState(null);
 
+  // list 위도
+  const [latitude, setLatitude] = useState('');
+  // list 경도
+  const [longitude, setLongitude] = useState('');
+
   // map ref
   const mapRef = useRef<HTMLDivElement>(null);
 
@@ -55,7 +60,16 @@ const Address = () => {
   useEffect(() => {
     if (!!map) {
       const makeCustomOverlay = (list: any) => {
-        return `<div class="bubble_wrap" key=${list.id}><div class="bubble_location" key=${list.id}>${list.address_name}</div></div>`;
+        if (list.y === latitude && list.x === longitude) {
+          return `<div class="bubble_wrap" key=${list.id}>
+        <img src=${LocationImage} alt="Location_image" />
+        <div class="test">${list.place_name}</div>
+        </div>`;
+        } else {
+          return `<div class="bubble_wrap" key=${list.id}>
+        <img src=${LocationImage} alt="Location_image" />
+        </div>`;
+        }
       };
 
       if (marker.length > 0) {
@@ -68,12 +82,23 @@ const Address = () => {
         });
       }
     }
-  }, [map, marker]);
+  }, [map, marker, longitude, latitude]);
 
   // 키워드로 장소 검색
   useEffect(() => {
     searchPlaces();
   }, []);
+
+  // list item에 mouse over 한 경우
+  const onListMouseOver = (el: any) => {
+    setLatitude(el.y);
+    setLongitude(el.x);
+  };
+
+  const onListMouseLeave = (el: any) => {
+    setLatitude('');
+    setLongitude('');
+  };
 
   return (
     <AddressWarp className="Address">
@@ -88,7 +113,7 @@ const Address = () => {
           {marker.length > 0 &&
             marker.map((el: any, index: any) => {
               return (
-                <AddressListContent key={`address-list-content-${index}`}>
+                <AddressListContent key={`address-list-content-${index}`} onMouseOver={() => onListMouseOver(el)} onMouseLeave={() => onListMouseLeave(el)}>
                   <h3>{el.place_name}</h3>
                   <p>{el.address_name}</p>
                   <p>{el.phone}</p>
