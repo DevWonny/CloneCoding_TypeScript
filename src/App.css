@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+.bubble_wrap {
+  position: absolute;
+  width: auto;
+  height: auto;
+  background: #f8f7f9;
+  border-radius: 5px;
+  padding: 2px 7px;
+  font-size: 0.8rem;
+  color: #1334ab;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.bubble_location {
+  margin-bottom: 3px;
+}
+
+.bubble_today_count {
+  margin-bottom: 3px;
+}

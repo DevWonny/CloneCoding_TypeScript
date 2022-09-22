@@ -6,7 +6,7 @@ import LocationImage from '../assets/Location.svg';
 
 const Address = () => {
   // marker
-  const [marker, setMarker] = useState([]);
+  const [marker, setMarker] = useState<any[]>([]);
 
   // map
   const [map, setMap] = useState(null);
@@ -51,6 +51,25 @@ const Address = () => {
     }
   };
 
+  // custom overay
+  useEffect(() => {
+    if (!!map) {
+      const makeCustomOverlay = (list: any) => {
+        return `<div class="bubble_wrap" key=${list.id}><div class="bubble_location" key=${list.id}>${list.address_name}</div></div>`;
+      };
+
+      if (marker.length > 0) {
+        marker.forEach((list) => {
+          const overlay = new window.kakao.maps.CustomOverlay({
+            map,
+            position: new window.kakao.maps.LatLng(list.y, list.x),
+            content: makeCustomOverlay(list),
+          });
+        });
+      }
+    }
+  }, [map, marker]);
+
   // 키워드로 장소 검색
   useEffect(() => {
     searchPlaces();
@@ -67,9 +86,9 @@ const Address = () => {
         {/* list */}
         <AddressListContainer>
           {marker.length > 0 &&
-            marker.map((el: any) => {
+            marker.map((el: any, index: any) => {
               return (
-                <AddressListContent>
+                <AddressListContent key={`address-list-content-${index}`}>
                   <h3>{el.place_name}</h3>
                   <p>{el.address_name}</p>
                   <p>{el.phone}</p>
@@ -184,5 +203,6 @@ const AddressListContent = styled.div`
 const AddressMapContainer = styled.div`
   width: 1000px;
   height: 100%;
+  position: relative;
   background: gray;
 `;
