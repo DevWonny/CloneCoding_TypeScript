@@ -3,6 +3,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import BackImage from '../assets/Map_background.jpg';
 import LocationImage from '../assets/Location.svg';
+import LocationColor from '../assets/Location_color.svg';
 
 const Address = () => {
   // marker
@@ -62,13 +63,14 @@ const Address = () => {
       const makeCustomOverlay = (list: any) => {
         if (list.y === latitude && list.x === longitude) {
           return `<div class="bubble_wrap" key=${list.id}>
-        <img src=${LocationImage} alt="Location_image" />
-        <div class="test">${list.place_name}</div>
+        <img src=${LocationColor} alt="Location_image" />
+        <div class="place_name_color">${list.place_name}</div>
         </div>`;
         } else {
           return `<div class="bubble_wrap" key=${list.id}>
-        <img src=${LocationImage} alt="Location_image" />
-        </div>`;
+          <img src=${LocationImage} alt="Location_image" />
+        <div class="place_name">${list.place_name}</div>
+          </div>`;
         }
       };
 
@@ -90,14 +92,14 @@ const Address = () => {
   }, []);
 
   // list item에 mouse over 한 경우
-  const onListMouseOver = (el: any) => {
+  const onListClick = (el: any) => {
+    if (!!latitude && !!longitude) {
+      setLatitude('');
+      setLongitude('');
+    }
+
     setLatitude(el.y);
     setLongitude(el.x);
-  };
-
-  const onListMouseLeave = (el: any) => {
-    setLatitude('');
-    setLongitude('');
   };
 
   return (
@@ -113,7 +115,7 @@ const Address = () => {
           {marker.length > 0 &&
             marker.map((el: any, index: any) => {
               return (
-                <AddressListContent key={`address-list-content-${index}`} onMouseOver={() => onListMouseOver(el)} onMouseLeave={() => onListMouseLeave(el)}>
+                <AddressListContent key={`address-list-content-${index}`} onClick={() => onListClick(el)}>
                   <h3>{el.place_name}</h3>
                   <p>{el.address_name}</p>
                   <p>{el.phone}</p>
