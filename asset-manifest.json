@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/CloneCoding_TypeScript/static/css/main.430c9601.css",
-    "main.js": "/CloneCoding_TypeScript/static/js/main.6aa80f2a.js",
+    "main.js": "/CloneCoding_TypeScript/static/js/main.f432dd9b.js",
     "static/js/787.bb90ea66.chunk.js": "/CloneCoding_TypeScript/static/js/787.bb90ea66.chunk.js",
     "static/media/Pizza4.png": "/CloneCoding_TypeScript/static/media/Pizza4.12a7304953c394f78e07.png",
     "static/media/Pizza2.png": "/CloneCoding_TypeScript/static/media/Pizza2.ad8062af08e8466e1168.png",
@@ -23,11 +23,11 @@
     "static/media/Location.svg": "/CloneCoding_TypeScript/static/media/Location.b615b6e2e421f1338775900c3687fd52.svg",
     "static/media/arrowTop.svg": "/CloneCoding_TypeScript/static/media/arrowTop.1edc6ffebaf7e649a02a210703f17bb7.svg",
     "main.430c9601.css.map": "/CloneCoding_TypeScript/static/css/main.430c9601.css.map",
-    "main.6aa80f2a.js.map": "/CloneCoding_TypeScript/static/js/main.6aa80f2a.js.map",
+    "main.f432dd9b.js.map": "/CloneCoding_TypeScript/static/js/main.f432dd9b.js.map",
     "787.bb90ea66.chunk.js.map": "/CloneCoding_TypeScript/static/js/787.bb90ea66.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.430c9601.css",
-    "static/js/main.6aa80f2a.js"
+    "static/js/main.f432dd9b.js"
   ]
 }
