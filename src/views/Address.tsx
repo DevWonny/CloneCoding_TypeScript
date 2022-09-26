@@ -23,9 +23,6 @@ const Address = () => {
   // 장소 검색 객체 생성
   const ps = new window.kakao.maps.services.Places();
 
-  // 검색결과 목록 및 마커를 클릭 했을 때 장소명을 표출할 인포윈도우 생성
-  const infoWindow = new window.kakao.maps.InfoWindow({ zIndex: 1 });
-
   // 지도 생성
   useEffect(() => {
     const options = {

@@ -209,12 +209,7 @@ const Inquiry = () => {
                   maxLength={20}
                   value={name}
                   onChange={(e) =>
-                    setName(
-                      e.target.value.replaceAll(
-                        /[^a-z|A-Z|ㄱ-ㅎ|가-힣|\u318D\u119E\u11A2\u2022\u2025a\u00B7\uFE55ㅏㅑㅓㅕㅗㅛㅜㅠㅣㅡㅢㅘㅚㅝㅐㅒㅔㅖㅟ]/g,
-                        ''
-                      )
-                    )
+                    setName(e.target.value.replaceAll(/[^a-z|A-Z|ㄱ-ㅎ|가-힣|\u318D\u119E\u11A2\u2022\u2025a\u00B7\uFE55ㅏㅑㅓㅕㅗㅛㅜㅠㅣㅡㅢㅘㅚㅝㅐㅒㅔㅖㅟ]/g, ''))
                   }
                 />
               </InquiryInputBox>
@@ -301,15 +296,7 @@ const Inquiry = () => {
                 <InquiryLabel htmlFor="email" isRequired={true}>
                   이메일
                 </InquiryLabel>
-                <InquiryInput
-                  id="email"
-                  isEmail={true}
-                  isBudget={false}
-                  isLocation={false}
-                  isContents={false}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+                <InquiryInput id="email" isEmail={true} isBudget={false} isLocation={false} isContents={false} value={email} onChange={(e) => setEmail(e.target.value)} />
               </InquiryInputBox>
             </InquiryInputContainer>
             <InquiryInputContainer>
@@ -342,12 +329,7 @@ const Inquiry = () => {
                   isContents={false}
                   value={location}
                   onChange={(e) =>
-                    setLocation(
-                      e.target.value.replaceAll(
-                        /[^a-z|A-Z|ㄱ-ㅎ|가-힣|\u318D\u119E\u11A2\u2022\u2025a\u00B7\uFE55ㅏㅑㅓㅕㅗㅛㅜㅠㅣㅡㅢㅘㅚㅝㅐㅒㅔㅖㅟ]/g,
-                        ''
-                      )
-                    )
+                    setLocation(e.target.value.replaceAll(/[^a-z|A-Z|ㄱ-ㅎ|가-힣|\u318D\u119E\u11A2\u2022\u2025a\u00B7\uFE55ㅏㅑㅓㅕㅗㅛㅜㅠㅣㅡㅢㅘㅚㅝㅐㅒㅔㅖㅟ]/g, ''))
                   }
                 />
               </InquiryInputBox>
@@ -451,8 +433,7 @@ const InquiryInputBox = styled.div<{ isBudgetContainer: boolean }>`
 `;
 
 const InquiryInput = styled.input<InquiryInputProps>`
-  width: ${(props) =>
-    props.isEmail || props.isContents ? '510px' : props.isBudget || props.isLocation ? '45%' : '160px'};
+  width: ${(props) => (props.isEmail || props.isContents ? '510px' : props.isBudget || props.isLocation ? '45%' : '160px')};
   /* height: ${(props) => (props.isContents ? '150px' : '35px')}; */
   height: 35px;
   padding: 0;
