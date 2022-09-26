@@ -5,8 +5,15 @@ import styled from 'styled-components';
 import ArrowTop from '../assets/arrowTop.svg';
 
 const TopButton = () => {
+  const onTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
-    <ButtonContainer>
+    <ButtonContainer onClick={() => onTop()}>
       <img src={ArrowTop} alt="arrowTop" />
     </ButtonContainer>
   );

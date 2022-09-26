@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import Header from '../components/Header';
 import MainBanner from './MainBanner';
@@ -9,9 +9,11 @@ import Inquiry from './Inquiry';
 import Footer from '../components/Footer';
 import TopButton from '../components/TopButton';
 
+import styled from 'styled-components';
+
 const Main = () => {
   return (
-    <>
+    <MainWrap>
       <Header />
       <MainBanner />
       <Brand />
@@ -20,8 +22,13 @@ const Main = () => {
       <Inquiry />
       <Footer />
       <TopButton />
-    </>
+    </MainWrap>
   );
 };
 
 export default Main;
+
+const MainWrap = styled.div`
+  width: 100%;
+  height: 100%;
+`;
