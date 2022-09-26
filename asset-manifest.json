@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/CloneCoding_TypeScript/static/css/main.430c9601.css",
+    "main.js": "/CloneCoding_TypeScript/static/js/main.83308c78.js",
+    "static/js/787.bb90ea66.chunk.js": "/CloneCoding_TypeScript/static/js/787.bb90ea66.chunk.js",
+    "static/media/Pizza4.png": "/CloneCoding_TypeScript/static/media/Pizza4.12a7304953c394f78e07.png",
+    "static/media/Pizza2.png": "/CloneCoding_TypeScript/static/media/Pizza2.ad8062af08e8466e1168.png",
+    "static/media/Pizza7.png": "/CloneCoding_TypeScript/static/media/Pizza7.35e4dd87671410fac581.png",
+    "static/media/Pizza5.png": "/CloneCoding_TypeScript/static/media/Pizza5.d24efc9bf24375638ef1.png",
+    "static/media/Pizza8.png": "/CloneCoding_TypeScript/static/media/Pizza8.edbee57f10b1b9959eb9.png",
+    "static/media/Pizza1.png": "/CloneCoding_TypeScript/static/media/Pizza1.a6ca5deb49701f765eda.png",
+    "static/media/Pizza6.png": "/CloneCoding_TypeScript/static/media/Pizza6.124366b3950809d5468b.png",
+    "static/media/Pizza3.png": "/CloneCoding_TypeScript/static/media/Pizza3.28196667744ac9cec49b.png",
+    "static/media/BrandImage.svg": "/CloneCoding_TypeScript/static/media/BrandImage.526ead22bd1511957d2edc0ad6daf58d.svg",
+    "static/media/MainBanner.svg": "/CloneCoding_TypeScript/static/media/MainBanner.91f097e6651010ad96742aa9b171cc1e.svg",
+    "static/media/Map_background.jpg": "/CloneCoding_TypeScript/static/media/Map_background.fd431a025c114525719f.jpg",
+    "static/media/InquiryBackground.jpg": "/CloneCoding_TypeScript/static/media/InquiryBackground.04ff3054ac9f8e103409.jpg",
+    "static/media/Logo.svg": "/CloneCoding_TypeScript/static/media/Logo.9e15f95fbee9c53cc0589b20af41bd41.svg",
+    "static/media/LoadingImage.svg": "/CloneCoding_TypeScript/static/media/LoadingImage.4457d5205f89f9413ac5932ef7428e20.svg",
+    "static/media/InquiryImage.jpg": "/CloneCoding_TypeScript/static/media/InquiryImage.430d32b6410460d9ba48.jpg",
+    "index.html": "/CloneCoding_TypeScript/index.html",
+    "static/media/Location_color.svg": "/CloneCoding_TypeScript/static/media/Location_color.a47d551f7f91ccca46cd7b2beb46c6cb.svg",
+    "static/media/Location.svg": "/CloneCoding_TypeScript/static/media/Location.b615b6e2e421f1338775900c3687fd52.svg",
+    "static/media/arrowTop.svg": "/CloneCoding_TypeScript/static/media/arrowTop.1edc6ffebaf7e649a02a210703f17bb7.svg",
+    "main.430c9601.css.map": "/CloneCoding_TypeScript/static/css/main.430c9601.css.map",
+    "main.83308c78.js.map": "/CloneCoding_TypeScript/static/js/main.83308c78.js.map",
+    "787.bb90ea66.chunk.js.map": "/CloneCoding_TypeScript/static/js/787.bb90ea66.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.430c9601.css",
+    "static/js/main.83308c78.js"
+  ]
+}
