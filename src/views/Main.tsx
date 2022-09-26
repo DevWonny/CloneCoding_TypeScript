@@ -7,6 +7,7 @@ import Menu from './Menu';
 import Address from './Address';
 import Inquiry from './Inquiry';
 import Footer from '../components/Footer';
+import TopButton from '../components/TopButton';
 
 const Main = () => {
   return (
@@ -18,6 +19,7 @@ const Main = () => {
       <Address />
       <Inquiry />
       <Footer />
+      <TopButton />
     </>
   );
 };
